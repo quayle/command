@@ -8,7 +8,7 @@
 namespace command {
     /**
      * Class responsible for handling commandline arguments.
-     * Arguments are required non-named parameters for program.
+     * Arguments are required,x non-named parameters of program.
      *
      * Example:
      *  ./myprog ARGUMENT

@@ -1,10 +1,18 @@
+#include <iostream>
+#include <string>
 
-int main() {
+#include "option.h"
+#include "argument.h"
+#include "command.h"
+
+
+int main(int argc, char *argv[]) {
     command::Command command(argc, argv, {
-        command::Option<std::string>("f", "File path", [](std::string value)->void { cout << "Sth: " << value << endl; }),
-        command::Argument<std::string>("File path", []()->void { cout << "Sth: " << value << endl; }),
-        command::Option<void>("help", "Help description", [](void)->void { cout << "Sth: " << value << endl; }),
-        command::Option<void>("verbose", "Verbose option description", &myClass->verbose)
+        new command::Argument<std::string>("File path", [](std::string value)->void { std::cout << "Hello from lambda " << value << std::endl; }),
+        new command::Argument<std::string>("File path", [](std::string value)->void { std::cout << "Hello from lambda " << value << std::endl; }),
+        new command::Argument<std::string>("File path", [](std::string value)->void { std::cout << "Hello from lambda " << value << std::endl; }),
+        new command::Argument<std::string>("File path", [](std::string value)->void { std::cout << "Hello from lambda " << value << std::endl; }),
+        new command::Argument<std::string>("File path", [](std::string value)->void { std::cout << "Hello from lambda " << value << std::endl; })
     });
 
     return 0;

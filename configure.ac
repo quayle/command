@@ -4,10 +4,10 @@ AM_INIT_AUTOMAKE([1.10 -Wall])
 AC_CONFIG_HEADERS([config.h])
 AC_PROG_CXX
 AC_CONFIG_FILES([
+    include/Makefile
     Makefile
+    tests/Makefile
 ])
-#    include/Makefile
-#    tests/Makefile
 #    docs/Makefile
 
 AC_OUTPUT

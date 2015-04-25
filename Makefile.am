@@ -23,7 +23,7 @@ CLEANFILES = \
 
 SUBDIRS = include . tests
 
-noinst_PROGRAMS = bin_command
+noinst_PROGRAMS = bin/command
 
 dist_noinst_SCRIPTS = autogen.sh
 

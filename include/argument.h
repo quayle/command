@@ -2,8 +2,10 @@
 #define __COMMAND_ARGUMENT_H
 
 #include <string>
+#include <iostream>
 
-#include <command/descriptive.h>
+#include "parameter.h"
+#include "callable.h"
 
 namespace command {
     /**
@@ -14,34 +16,23 @@ namespace command {
      *  ./myprog ARGUMENT
      */
     template<typename ArgumentType>
-    class Argument : public Descriptive {
+    class Argument : public Parameter, public Callable<ArgumentType> {
     public:
-        typedef void (*)(ArgumentType) FunctionType;
-
-    protected:
-        /**
-         * Function handling user Arguments
-         */
-        FunctionType function;
-
-    public:
+        typedef class Argument Type;
         /**
          * Default constructor.
          *
          * @param description Description of current Argument
          * @param function Function used to handle current Argument.
          */
-        Argument(std::string description, FunctionType function)
-            : Descriptive(description), function(function) {
+        Argument(std::string description, void (*function)(ArgumentType))
+            : Parameter(description), Callable<ArgumentType>(function) {
         }
+        virtual ~Argument() { }
 
-        /**
-         * Executes command binded with argument
-         *
-         * @param value Value passed to program argument
-         */
-        void run(ArgumentType value) {
-            this->function(value);
+        virtual void handle() {
+            std::cout << "Argument::handle()" << std::endl;
+            this->call(std::string("A"));
         }
     };
 }

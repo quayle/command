@@ -1,6 +1,10 @@
 #ifndef __COMMAND_OPTION_H
 #define __COMMAND_OPTION_H
 
+#include <string>
+
+#include "argument.h"
+
 namespace command {
     /**
      * Class responsible for handling commandline options.
@@ -12,6 +16,8 @@ namespace command {
     template<typename OptionType>
     class Option
         : Argument<OptionType> {
+    public:
+//         typedef typename Argument<OptionType, Lambda>::FunctionType FunctionType;
     protected:
         /**
          * Option name
@@ -26,8 +32,12 @@ namespace command {
          * @param description Description of current Option
          * @param function Function used to handle current Option.
          */
-        Argument(std::string name, std::string description, FunctionType function)
+        Option(std::string name, std::string description, void (*function)(OptionType))
             : name(name), Argument<OptionType>(description, function) {
+        }
+        virtual ~Option() { }
+
+        virtual void handle() {
         }
     };
 }

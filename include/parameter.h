@@ -15,6 +15,8 @@ namespace command {
      *  ./myprog ARGUMENT
      */
     class Parameter : public Descriptive {
+    protected:
+        std:string userValue;
     public:
         typedef class Parameter Type;
         /**
@@ -27,9 +29,11 @@ namespace command {
         }
         virtual ~Parameter() {}
 
-        virtual void handle() {
-            std::cout << "Parameter::handle()" << std::endl;
-        };
+        virtual void handle() = 0;
+
+        virtual void passUserValue(std::string argVal) {
+            userValue = argVal;
+        }
     };
 }
 

@@ -13,27 +13,45 @@ namespace command {
      */
     class Command {
     protected:
-        unsigned int argc;
-        std::vector<std::string> _argv;
         std::vector<Parameter *> args;
     public:
         /**
          * Default constructor.
          *
-         * @param 
-         * @param 
-         * @param 
+         * @param argc passed to the main function
+         * @param argv passed to the main function
+         * @param params initializer_list containing Parameter handlers
+         *      responsible for correctly handle user data.
          */
         Command(unsigned int argc, char *argv[], std::initializer_list<Parameter *> params)
             : args(params) {
-            for(Parameter *param : params) {
-                param->handle();
-            }
+
+            matchArguments(argc, argv);
+            invoke();
         }
-        
+
+        /**
+         * Destructor. Releases allocated memory.
+         */
         ~Command() {
             for (Parameter * parameter : args) {
                 delete parameter;
+            }
+        }
+    protected:
+        /**
+         * Matches user passed arguments with available parameter handlers.
+         */
+        void matchArguments(unsigned int argc, char *argv[]) {
+//             param->passUserValue();
+        }
+
+        /**
+         * Invokes passed parameter handlers
+         */
+        void invoke() {
+            for(Parameter *param : params) {
+                param->handle();
             }
         }
     };

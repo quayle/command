@@ -13,7 +13,7 @@ namespace command {
      */
     class Command {
     protected:
-        std::vector<Parameter *> args;
+        std::vector<Parameter *> parameters;
     public:
         /**
          * Default constructor.
@@ -24,7 +24,7 @@ namespace command {
          *      responsible for correctly handle user data.
          */
         Command(unsigned int argc, char *argv[], std::initializer_list<Parameter *> params)
-            : args(params) {
+            : parameters(params) {
 
             matchArguments(argc, argv);
             invoke();
@@ -34,7 +34,7 @@ namespace command {
          * Destructor. Releases allocated memory.
          */
         ~Command() {
-            for (Parameter * parameter : args) {
+            for (Parameter * parameter : parameters) {
                 delete parameter;
             }
         }
@@ -50,7 +50,7 @@ namespace command {
          * Invokes passed parameter handlers
          */
         void invoke() {
-            for(Parameter *param : params) {
+            for(Parameter *param : parameters) {
                 param->handle();
             }
         }

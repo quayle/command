@@ -16,7 +16,7 @@ namespace command {
      */
     class Parameter : public Descriptive {
     protected:
-        std:string userValue;
+        std::string userValue;
     public:
         typedef class Parameter Type;
         /**

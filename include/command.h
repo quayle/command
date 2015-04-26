@@ -27,7 +27,6 @@ namespace command {
         Command(unsigned int argc, char *argv[], std::initializer_list<Parameter *> params)
             : args(params) {
             for(Parameter *param : params) {
-                std::cout << "Command foreach" << std::endl;
                 param->handle();
             }
         }

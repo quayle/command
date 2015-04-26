@@ -15,7 +15,7 @@ namespace command {
      */
     template<typename OptionType>
     class Option
-        : Argument<OptionType> {
+        : public Argument<OptionType> {
     public:
 //         typedef typename Argument<OptionType, Lambda>::FunctionType FunctionType;
     protected:
@@ -38,6 +38,8 @@ namespace command {
         virtual ~Option() { }
 
         virtual void handle() {
+            std::cout << "Option::handle()" << std::endl;
+            this->call(std::string("O"));
         }
     };
 }

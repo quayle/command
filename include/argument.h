@@ -31,8 +31,11 @@ namespace command {
         virtual ~Argument() { }
 
         virtual void handle() {
-            std::cout << "Argument::handle()" << std::endl;
             this->call(std::string("A"));
+        }
+
+        virtual bool understand(const std::string &) {
+            return false;
         }
     };
 }

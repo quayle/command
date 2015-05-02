@@ -8,15 +8,12 @@
 
 namespace command {
     /**
-     * Class responsible for handling commandline arguments.
-     * Arguments are required,x non-named parameters of program.
+     * Base class for all the Arguments and Options.
      *
      * Example:
      *  ./myprog ARGUMENT
      */
     class Parameter : public Descriptive {
-    protected:
-        std::string userValue;
     public:
         typedef class Parameter Type;
         /**
@@ -29,11 +26,16 @@ namespace command {
         }
         virtual ~Parameter() {}
 
+        /**
+         * Method used for handling method calls linked with Argument or Option
+         */
         virtual void handle() = 0;
 
-        virtual void passUserValue(std::string argVal) {
-            userValue = argVal;
-        }
+        /**
+         * Method used for checking if the given user value understandable for
+         * parameter.
+         */
+        virtual bool understand(std::string argVal) = 0;
     };
 }
 

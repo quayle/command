@@ -15,7 +15,7 @@ namespace command {
          *
          * @param description Description
          */
-        Descriptive(std::string description)
+        Descriptive(const std::string& description)
             : description(description) {
         }
 

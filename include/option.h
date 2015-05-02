@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "argument.h"
+#include "parameter.h"
 
 namespace command {
     /**
@@ -15,9 +15,7 @@ namespace command {
      */
     template<typename OptionType>
     class Option
-        : public Argument<OptionType> {
-    public:
-//         typedef typename Argument<OptionType, Lambda>::FunctionType FunctionType;
+        : public Parameter, public Callable<OptionType>  {
     protected:
         /**
          * Option name
@@ -33,13 +31,20 @@ namespace command {
          * @param function Function used to handle current Option.
          */
         Option(std::string name, std::string description, void (*function)(OptionType))
-            : name(name), Argument<OptionType>(description, function) {
+            : Parameter(description), Callable<OptionType>(function) {
         }
         virtual ~Option() { }
 
         virtual void handle() {
-            std::cout << "Option::handle()" << std::endl;
             this->call(std::string("O"));
+        }
+
+        virtual bool understand(std::string argVal) {
+            if (argVal.find(name) != std::string::npos) {
+                return true;
+            }
+
+            return false;
         }
     };
 }

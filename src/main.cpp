@@ -5,7 +5,7 @@
 #include "argument.h"
 #include "command.h"
 
-void some_function(std::string str) {
+void some_function(std::string) {
     std::cout << "Some function" << std::endl;
 }
 

@@ -42,7 +42,7 @@ namespace command {
         /**
          * Matches user passed arguments with available parameter handlers.
          */
-        void matchArguments(unsigned int argc, char *argv[]) {
+        void matchArguments(unsigned int , char **) {
 //             param->passUserValue();
         }
 

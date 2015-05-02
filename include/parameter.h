@@ -35,7 +35,7 @@ namespace command {
          * Method used for checking if the given user value understandable for
          * parameter.
          */
-        virtual bool understand(std::string argVal) = 0;
+        virtual bool understand(const std::string & ) = 0;
     };
 }
 

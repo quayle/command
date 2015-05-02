@@ -31,7 +31,7 @@ namespace command {
          * @param function Function used to handle current Option.
          */
         Option(std::string name, std::string description, void (*function)(OptionType))
-            : Parameter(description), Callable<OptionType>(function) {
+            : Parameter(description), Callable<OptionType>(function), name(name) {
         }
         virtual ~Option() { }
 
@@ -39,7 +39,7 @@ namespace command {
             this->call(std::string("O"));
         }
 
-        virtual bool understand(std::string argVal) {
+        virtual bool understand(const std::string & argVal) {
             if (argVal.find(name) != std::string::npos) {
                 return true;
             }

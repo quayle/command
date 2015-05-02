@@ -27,7 +27,6 @@ namespace command {
             : parameters(params) {
 
             matchArguments(argc, argv);
-            invoke();
         }
 
         /**
@@ -42,16 +41,14 @@ namespace command {
         /**
          * Matches user passed arguments with available parameter handlers.
          */
-        void matchArguments(unsigned int , char **) {
-//             param->passUserValue();
-        }
-
-        /**
-         * Invokes passed parameter handlers
-         */
-        void invoke() {
-            for(Parameter *param : parameters) {
-                param->handle();
+        void matchArguments(unsigned int argc, char *argv[]) {
+            for (unsigned int i = 1; i < argc; i++) {
+                for(Parameter *param : parameters) {
+                    if (param->understand(argv[i])) {
+                        param->handle();
+                        break;
+                    }
+                }
             }
         }
     };

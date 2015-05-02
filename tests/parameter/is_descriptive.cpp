@@ -1,20 +1,12 @@
 #include <cstring>
 #include <iostream>
 
-#include "parameter.h"
+#include "TestParameter.h"
 
 using namespace std;
 using namespace command;
 
 #define STRING "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-
-class TestParameter : public Parameter {
-public:
-    TestParameter(std::string description) : Parameter(description) { }
-
-    virtual void handle() { }
-    virtual bool understand(std::string argVal) { }
-};
 
 int main() {
     TestParameter parameter(STRING);

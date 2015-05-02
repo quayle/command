@@ -14,7 +14,6 @@ void function(bool val) {
 };
 
 int main() {
-
     TestCallable<bool> callable(function);
     callable.callFunction(true);
 

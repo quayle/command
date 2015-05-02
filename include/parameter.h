@@ -21,7 +21,7 @@ namespace command {
          *
          * @param description Description of current Argument
          */
-        Parameter(std::string description)
+        Parameter(const std::string & description)
             : Descriptive(description) {
         }
         virtual ~Parameter() {}

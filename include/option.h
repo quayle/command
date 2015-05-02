@@ -30,7 +30,7 @@ namespace command {
          * @param description Description of current Option
          * @param function Function used to handle current Option.
          */
-        Option(std::string name, std::string description, void (*function)(OptionType))
+        Option(std::string name, const std::string & description, void (*function)(OptionType))
             : Parameter(description), Callable<OptionType>(function), name(name) {
         }
         virtual ~Option() { }

@@ -25,7 +25,7 @@ namespace command {
          * @param description Description of current Argument
          * @param function Function used to handle current Argument.
          */
-        Argument(std::string description, void (*function)(ArgumentType))
+        Argument(const std::string & description, void (*function)(ArgumentType))
             : Parameter(description), Callable<ArgumentType>(function) {
         }
         virtual ~Argument() { }

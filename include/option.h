@@ -2,6 +2,8 @@
 #define __COMMAND_OPTION_H
 
 #include <string>
+#include <sstream>
+#include <stdexcept>
 
 #include "parameter.h"
 
@@ -11,16 +13,26 @@ namespace command {
      * Options are non-required, named parameters of program.
      *
      * Example:
-     *  ./myprog OptionName OptionValue
+     *  ./myprog OptionName=OptionValue
      */
     template<typename OptionType>
     class Option
         : public Parameter, public Callable<OptionType>  {
+    public:
+        typedef std::string OptionName;
     protected:
         /**
-         * Option name
+         * Current Option name
          */
-        std::string name;
+        OptionName name;
+
+        /**
+         * Current Option value
+         */
+        OptionType value;
+
+        /** Variable indicating if current Option was already used or not */
+        bool used = false;
 
     public:
         /**
@@ -33,17 +45,66 @@ namespace command {
         Option(std::string name, const std::string & description, void (*function)(OptionType))
             : Parameter(description), Callable<OptionType>(function), name(name) {
         }
+
+        /**
+         *
+         */
         virtual ~Option() { }
 
+        /**
+         *
+         */
         virtual void handle() {
-            this->call(std::string("O"));
+            this->call(value);
         }
 
-        virtual bool understand(const std::string & argVal) {
-            if (argVal.find(name) != std::string::npos) {
+        /**
+         * Method used for checking if Option understands given user value.
+         * If so current Option is flagged as used and no more checks against
+         * it will be done in future.
+         *
+         * Passed value should be in form of:
+         *      OptionName=OptionValue
+         *
+         * If no equal sign is after OptionName part,
+         * std::invalid_argument exception with appropriate message is thrown
+         *
+         * If conversion of OptionValue part to OptionType failed,
+         * std::invalid_argument exception with appropriate message is thrown
+         *
+         * @param argv command line value against which test will be made.
+         *  User value should be in format: OptionName=OptionValue.
+         *
+         * @return If passed argv succesfully detected OptionName part as a
+         *  current option and its OptionValue part has been succesfully
+         *  converted to OptionType, returns true and Option is set as used one.
+         *  Otherwise returns false and can be used to check against next value.
+         *
+         * @throw std::invalid_argument when OptionName part has no equal sign
+         *  after itself
+         * @throw std::invalid_argument when OptionValue part failed conversion
+         *  to OptionType
+         */
+        virtual bool understand(const std::string & argv) {
+            if ((!used) &&
+                (argv.find(name) == 0)) {
+                std::size_t pos = argv.find("=");
+                if (pos != name.size()) {
+                    throw std::invalid_argument("Option: " + name + " requires value but no one has been provided");
+                }
+
+                std::stringstream ss;
+
+                ss << argv.substr(pos + 1);
+                ss >> value;
+
+                if (ss.fail()) {
+                    throw std::invalid_argument("Value for option: " + name + " failed conversion to the required type");
+                }
+
+                used = true;
                 return true;
             }
-
             return false;
         }
     };

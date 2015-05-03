@@ -34,10 +34,4 @@ nodist_bin_command_SOURCES = \
 bin_command_CPPFLAGS = \
     $(bin_command_CFLAGS) \
     -I$(top_srcdir)/include \
-    -Wall -pedantic -Wextra \
-    -Wl,--export-dynamic
-
-bin_command_LDADD = \
-    $(bin_command_LIBS)
-
-bin_command_LDFLAGS = $(LTLIBINTL)
+    -Wall -pedantic -Wextra

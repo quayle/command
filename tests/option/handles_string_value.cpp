@@ -9,7 +9,7 @@ using namespace command;
 #define NAME "test"
 #define VALUE "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
-#define OPTION NAME"="VALUE
+#define OPTION NAME "=" VALUE
 
 typedef std::string OptionType;
 

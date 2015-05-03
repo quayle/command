@@ -2,8 +2,8 @@ if HAVE_DOXYGEN
 
 directory = $(top_srcdir)/docs/man/man3
 
-dist_man_MANS = $(directory)/*.3
-$(directory)/*.3: doxyfile.stamp
+# dist_man_MANS = $(directory)/*.3
+# $(directory)/*.3: doxyfile.stamp
 #$(directory)/man_page_2.3: doxyfile.stamp
 
 doxyfile.stamp:

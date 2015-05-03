@@ -17,7 +17,7 @@ TESTS = \
 
 noinst_PROGRAMS = $(TESTS)
 
-AM_CXXFLAGS = -O3 -I$(top_srcdir)/include -std=c++11
+AM_CXXFLAGS = -I$(top_srcdir)/include -std=c++11
 
 descriptive_holds_data_test_SOURCES  = descriptive/holds_data.cpp
 

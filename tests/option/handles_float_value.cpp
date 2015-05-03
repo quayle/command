@@ -9,7 +9,7 @@ using namespace command;
 #define NAME "test"
 #define VALUE "567890.1234"
 
-#define OPTION NAME"="VALUE
+#define OPTION NAME "=" VALUE
 
 typedef float OptionType;
 

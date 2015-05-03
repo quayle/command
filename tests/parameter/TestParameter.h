@@ -6,5 +6,5 @@ public:
     TestParameter(const std::string & description) : Parameter(description) { }
 
     virtual void handle() { }
-    virtual bool understand(const std::string & argVal) { }
+    virtual bool understand(const std::string & ) { return false; }
 };

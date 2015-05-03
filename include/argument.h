@@ -16,6 +16,8 @@ namespace command {
      *
      * Example:
      *  ./myprog ARGUMENT
+     *  ./myprog /path/to/file
+     *  ./myprog "some argument"
      */
     template<typename ArgumentType>
     class Argument : public Parameter, public Callable<ArgumentType> {

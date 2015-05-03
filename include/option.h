@@ -14,6 +14,8 @@ namespace command {
      *
      * Example:
      *  ./myprog OptionName=OptionValue
+     *  ./myprog -f=/some/file
+     *  ./myprog --level=15
      */
     template<typename OptionType>
     class Option
@@ -102,6 +104,81 @@ namespace command {
                     throw std::invalid_argument("Value for option: " + name + " failed conversion to the required type");
                 }
 
+                used = true;
+                return true;
+            }
+            return false;
+        }
+    };
+
+    /**
+     * Template class responsible for handling commandline options.
+     * Options are non-required, named parameters of program.
+     * This template specialization allows Options to work like switches.
+     * It means that just named parameter is needed to invoke command. No value
+     * is used.
+     *
+     * Example:
+     *  ./myprog OptionName
+     *  ./myprog -h
+     *  ./myprog --help
+     */
+    template<>
+    class Option<void>
+        : public Parameter, public Callable<void>  {
+    public:
+        typedef std::string OptionName;
+    protected:
+        /**
+         * Current Option name
+         */
+        OptionName name;
+
+        /** Variable indicating if current Option was already used or not */
+        bool used = false;
+
+    public:
+        /**
+         * Default constructor.
+         *
+         * @param name Name of the current Option
+         * @param description Description of current Option
+         * @param function Function used to handle current Option.
+         */
+        Option(std::string name, const std::string & description, void (*function)(void))
+            : Parameter(description), Callable<void>(function), name(name) {
+        }
+
+        /**
+         *
+         */
+        virtual ~Option() { }
+
+        /**
+         *
+         */
+        virtual void handle() {
+            this->call();
+        }
+
+        /**
+         * Method used for checking if Option understands given user value.
+         * If so, current Option is flagged as used and no more checks against
+         * it will be done in future.
+         *
+         * Passed value should be in form of:
+         *      OptionName
+         *
+         * @param argv command line value against which test will be made.
+         *  User value should be in format: OptionName.
+         *
+         * @return If passed argv succesfully detected OptionName returns true
+         *  and Option is set as used one. Otherwise returns false and can be
+         *  used to check against next value.
+         */
+        virtual bool understand(const std::string & argv) {
+            if ((!used) &&
+                (argv == name)) {
                 used = true;
                 return true;
             }

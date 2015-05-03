@@ -26,14 +26,14 @@ int main() {
         option.handle();
     }
     else {
-        cout << "Option class do not understand string values\n";
+        cout << option.describe() << " do not understand string values\n";
         return 1;
     }
 
     int cmp = strcmp(test.c_str(), VALUE);
 
     if (cmp == 0) {
-        cout << "Option class handles string values\n";
+        cout << option.describe() << " handles string values\n";
         return 0;
     }
 

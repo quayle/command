@@ -12,7 +12,8 @@ TESTS = \
 	argument_handles_negative_float_value.test \
 	argument_handles_boolean_value.test \
 	option_handles_string_value.test \
-	option_handles_boolean_value.test
+	option_handles_boolean_value.test \
+	option_handles_float_value.test
 
 noinst_PROGRAMS = $(TESTS)
 
@@ -34,3 +35,4 @@ argument_handles_boolean_value_test_SOURCES  = argument/handles_boolean_value.cp
 
 option_handles_string_value_test_SOURCES  = option/handles_string_value.cpp
 option_handles_boolean_value_test_SOURCES  = option/handles_boolean_value.cpp
+option_handles_float_value_test_SOURCES  = option/handles_float_value.cpp

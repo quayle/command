@@ -22,12 +22,12 @@ int main() {
         argument.handle();
     }
     else {
-        cout << "Argument class do not understand float values\n";
+        cout << argument.describe() << " do not understand float values\n";
         return 1;
     }
 
     if (test == std::stof(VALUE)) {
-        cout << "Argument class handles float values\n";
+        cout << argument.describe() << " handles float values\n";
         return 0;
     }
 

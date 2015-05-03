@@ -13,3 +13,15 @@ public:
         this->call(test);
     }
 };
+
+template<>
+class TestCallable<void> : public Callable<void> {
+public:
+    TestCallable(void (*function)(void))
+        : Callable<void>(function) {
+    }
+
+    void callFunction() {
+        this->call();
+    }
+};

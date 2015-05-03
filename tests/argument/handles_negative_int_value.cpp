@@ -21,6 +21,10 @@ int main() {
     if (argument.understand(VALUE)) {
         argument.handle();
     }
+    else {
+        cout << "Argument class do not understand negative int values\n";
+        return 1;
+    }
 
     if (test == std::stoi(VALUE)) {
         cout << "Argument class handles negative int values\n";

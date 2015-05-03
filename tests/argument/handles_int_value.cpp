@@ -22,6 +22,10 @@ int main() {
     if (argument.understand(VALUE)) {
         argument.handle();
     }
+    else {
+        cout << "Argument class do not understand int values\n";
+        return 1;
+    }
 
     if (test == std::stoi(VALUE)) {
         cout << "Argument class handles int values\n";

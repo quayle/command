@@ -8,7 +8,8 @@ TESTS = \
 	argument_handles_int_value.test \
 	argument_handles_negative_int_value.test \
 	argument_handles_float_value.test \
-	argument_handles_negative_float_value.test
+	argument_handles_negative_float_value.test \
+	argument_handles_boolean_value.test
 
 noinst_PROGRAMS = $(TESTS)
 
@@ -25,3 +26,4 @@ argument_handles_int_value_test_SOURCES  = argument/handles_int_value.cpp
 argument_handles_negative_int_value_test_SOURCES  = argument/handles_negative_int_value.cpp
 argument_handles_float_value_test_SOURCES  = argument/handles_float_value.cpp
 argument_handles_negative_float_value_test_SOURCES  = argument/handles_negative_float_value.cpp
+argument_handles_boolean_value_test_SOURCES  = argument/handles_boolean_value.cpp

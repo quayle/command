@@ -22,6 +22,10 @@ int main() {
     if (argument.understand(VALUE)) {
         argument.handle();
     }
+    else {
+        cout << "Argument class do not understand string values\n";
+        return 1;
+    }
 
     int cmp = strcmp(test.c_str(), VALUE);
 

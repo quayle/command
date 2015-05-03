@@ -21,6 +21,10 @@ int main() {
     if (argument.understand(VALUE)) {
         argument.handle();
     }
+    else {
+        cout << "Argument class do not understand float values\n";
+        return 1;
+    }
 
     if (test == std::stof(VALUE)) {
         cout << "Argument class handles float values\n";

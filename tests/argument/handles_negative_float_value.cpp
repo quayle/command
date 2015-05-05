@@ -16,22 +16,22 @@ void function(ArgumentType value) {
 }
 
 int main() {
-    Argument<ArgumentType> argument("Argument as float", function);
+    Argument<ArgumentType> argument("Argument as negative float", function);
 
     if (argument.understand(VALUE)) {
         argument.handle();
     }
     else {
-        cout << "Argument class do not understand negative float values\n";
+        cout << argument.describe() << " do not understand " << VALUE " value\n";
         return 1;
     }
 
     if (test == std::stof(VALUE)) {
-        cout << "Argument class handles negative float values\n";
+        cout << argument.describe() << " handles negative float values\n";
         return 0;
     }
 
-    cout << "Argument class do not handle negative float values\n";
+    cout << argument.describe() << " do not handle negative float values\n";
 
     return 1;
 }

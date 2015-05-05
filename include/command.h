@@ -3,7 +3,6 @@
 
 #include <string>
 #include <vector>
-#include <iostream>
 
 #include "parameter.h"
 
@@ -26,16 +25,20 @@ namespace command {
         Command(unsigned int argc, char *argv[], std::initializer_list<Parameter *> params)
             : parameters(params) {
 
-            matchArguments(argc, argv);
+            try {
+                matchArguments(argc, argv);
+            }
+            catch(std::invalid_argument exception) {
+                releaseMemory();
+                throw;
+            }
         }
 
         /**
          * Destructor. Releases allocated memory.
          */
         ~Command() {
-            for (Parameter * parameter : parameters) {
-                delete parameter;
-            }
+            releaseMemory();
         }
     protected:
         /**
@@ -50,6 +53,19 @@ namespace command {
                     }
                 }
             }
+        }
+
+        /**
+         * Releases acquired memory
+         */
+        void releaseMemory() {
+            for (Parameter * parameter : parameters) {
+                if (parameter != NULL) {
+                    delete parameter;
+                }
+            }
+            parameters.clear();
+            parameters.shrink_to_fit();
         }
     };
 }

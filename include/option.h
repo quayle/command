@@ -26,7 +26,7 @@ namespace command {
         /**
          * Current Option name
          */
-        OptionName name;
+        const OptionName name;
 
         /**
          * Current Option value
@@ -44,7 +44,7 @@ namespace command {
          * @param description Description of current Option
          * @param function Function used to handle current Option.
          */
-        Option(std::string name, const std::string & description, void (*function)(OptionType))
+        Option(const std::string & name, const std::string & description, void (*function)(OptionType))
             : Parameter(description), Callable<OptionType>(function), name(name) {
         }
 
@@ -87,18 +87,21 @@ namespace command {
          * @throw std::invalid_argument when OptionValue part failed conversion
          *  to OptionType
          */
-        virtual bool understand(const std::string & argv) {
-            if ((!used) &&
-                (argv.find(name) == 0)) {
+        virtual bool understand(const std::string & argv)
+            throw(std::invalid_argument) {
+
+            if ((!used) && (argv.find(name) == 0)) {
                 std::size_t pos = argv.find("=");
+
                 if (pos != name.size()) {
                     throw std::invalid_argument("Option: " + name + " requires value but no one has been provided");
                 }
 
                 std::stringstream ss;
-
                 ss << argv.substr(pos + 1);
-                ss >> value;
+                ss >> value;// memory leak? when is uncommented, and exception is
+                            // thrown, valgrind shows e.g.:
+                            //  possibly lost: 380 bytes in 7 blocks
 
                 if (ss.fail()) {
                     throw std::invalid_argument("Value for option: " + name + " failed conversion to the required type");
@@ -132,7 +135,7 @@ namespace command {
         /**
          * Current Option name
          */
-        OptionName name;
+        const OptionName name;
 
         /** Variable indicating if current Option was already used or not */
         bool used = false;
@@ -145,14 +148,9 @@ namespace command {
          * @param description Description of current Option
          * @param function Function used to handle current Option.
          */
-        Option(std::string name, const std::string & description, void (*function)(void))
+        Option(const std::string & name, const std::string & description, void (*function)(void))
             : Parameter(description), Callable<void>(function), name(name) {
         }
-
-        /**
-         *
-         */
-        virtual ~Option() { }
 
         /**
          *

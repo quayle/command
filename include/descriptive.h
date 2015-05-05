@@ -8,7 +8,7 @@ namespace command {
      * Descriptive behaviour class.
      */
     class Descriptive {
-        std::string description;
+        const std::string description;
     public:
         /**
          * Default constructor.
@@ -19,12 +19,14 @@ namespace command {
             : description(description) {
         }
 
+        virtual ~Descriptive() { }
+
         /**
          * Returns description of the current class.
          *
          * @return provided description for the class
          */
-        std::string describe() {
+        const std::string & describe() {
             return description;
         }
     };

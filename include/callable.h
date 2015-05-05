@@ -24,6 +24,7 @@ namespace command {
         Callable(void (*function)(ArgumentType))
             : func(function) {
         }
+
         virtual ~Callable() { }
 
     protected:

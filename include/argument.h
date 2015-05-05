@@ -25,7 +25,7 @@ namespace command {
         /** Variable indicating if current Argument was already used or not */
         bool used = false;
 
-        ArgumentType argument;
+        ArgumentType value;
     public:
         typedef class Argument Type;
 
@@ -48,7 +48,7 @@ namespace command {
          *
          */
         virtual void handle() {
-            this->call(argument);
+            this->call(value);
         }
 
         /**
@@ -72,7 +72,7 @@ namespace command {
                 std::stringstream ss;
 
                 ss << argv;
-                ss >> argument;
+                ss >> value;
 
                 if (!ss.fail()) {
                     used = true;

@@ -24,7 +24,8 @@ namespace command {
         Parameter(const std::string & description)
             : Descriptive(description) {
         }
-        virtual ~Parameter() {}
+
+        virtual ~Parameter() { }
 
         /**
          * Method used for handling method calls linked with Argument or Option

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <typeinfo>
 
 #include "parameter.h"
 
@@ -32,6 +33,10 @@ namespace command {
                 releaseMemory();
                 throw;
             }
+            catch(std::logic_error exception) {
+                releaseMemory();
+                throw;
+            }
         }
 
         /**
@@ -51,6 +56,11 @@ namespace command {
                         param->handle();
                         break;
                     }
+                }
+            }
+            for(Parameter *param : parameters) {
+                if (param->isRequired() && !param->isUsed()) {
+                    throw std::logic_error(param->describe() + " is required but it was not handled");
                 }
             }
         }

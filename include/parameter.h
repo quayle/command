@@ -14,6 +14,10 @@ namespace command {
      *  ./myprog ARGUMENT
      */
     class Parameter : public Descriptive {
+    protected:
+        /** Variable indicating if current Parameter was already used or not */
+        bool used = false;
+
     public:
         typedef class Parameter Type;
         /**
@@ -37,6 +41,17 @@ namespace command {
          * parameter.
          */
         virtual bool understand(const std::string & ) = 0;
+
+        /**
+         * Indicates if current Parameter is required
+         */
+        virtual bool isRequired() {
+            return false;
+        };
+
+        virtual bool isUsed() {
+            return used;
+        }
     };
 }
 

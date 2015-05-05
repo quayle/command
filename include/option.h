@@ -10,7 +10,7 @@
 namespace command {
     /**
      * Class responsible for handling commandline options.
-     * Options are non-required, named parameters of program.
+     * Options are named parameters of program.
      *
      * Example:
      *  ./myprog OptionName=OptionValue
@@ -32,9 +32,6 @@ namespace command {
          * Current Option value
          */
         OptionType value;
-
-        /** Variable indicating if current Option was already used or not */
-        bool used = false;
 
     public:
         /**
@@ -90,7 +87,7 @@ namespace command {
         virtual bool understand(const std::string & argv)
             throw(std::invalid_argument) {
 
-            if ((!used) && (argv.find(name) == 0)) {
+            if ((!isUsed()) && (argv.find(name) == 0)) {
                 std::size_t pos = argv.find("=");
 
                 if (pos != name.size()) {
@@ -136,10 +133,6 @@ namespace command {
          * Current Option name
          */
         const OptionName name;
-
-        /** Variable indicating if current Option was already used or not */
-        bool used = false;
-
     public:
         /**
          * Default constructor.
@@ -175,7 +168,7 @@ namespace command {
          *  used to check against next value.
          */
         virtual bool understand(const std::string & argv) {
-            if ((!used) &&
+            if ((!isUsed()) &&
                 (argv == name)) {
                 used = true;
                 return true;

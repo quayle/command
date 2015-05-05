@@ -11,8 +11,7 @@
 namespace command {
     /**
      * Class responsible for handling commandline arguments.
-     * Arguments are required, non-named parameters of program.
-     * Accepts
+     * Arguments are non-named parameters of program.
      *
      * Example:
      *  ./myprog ARGUMENT
@@ -22,9 +21,6 @@ namespace command {
     template<typename ArgumentType>
     class Argument : public Parameter, public Callable<ArgumentType> {
     protected:
-        /** Variable indicating if current Argument was already used or not */
-        bool used = false;
-
         ArgumentType value;
     public:
         typedef class Argument Type;
@@ -68,14 +64,14 @@ namespace command {
          *  against next value.
          */
         virtual bool understand(const std::string & argv) {
-            if (!used) {
+            if (!isUsed()) {
                 std::stringstream ss;
 
                 ss << argv;
                 ss >> value;
 
                 if (!ss.fail()) {
-                    used = true;
+                    this->used = true;
                     return true;
                 }
             }

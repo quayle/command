@@ -3,7 +3,10 @@
 
 #include "option.h"
 #include "argument.h"
+#include "required.h"
 #include "command.h"
+
+using namespace command;
 
 void argument_function(bool a) {
     std::cout << "Argument: " << a << std::endl;
@@ -18,11 +21,11 @@ void void_function(void) {
 }
 
 int main(int argc, char *argv[]) {
-    command::Command command(argc, argv, {
-//         new command::Argument<std::string>("File path", [](std::string value)->void { std::cout << "Hello from lambda " << value << std::endl; }),
-        new command::Argument<bool>("File path", argument_function),
-        new command::Option<std::string>("f", "Optional file", option_function),
-        new command::Option<void>("h", "Help", void_function)
+    Command command(argc, argv, {
+//         new Argument<std::string>("File path", [](std::string value)->void { std::cout << "Hello from lambda " << value << std::endl; }),
+        new Required(new Argument<bool>("File path", argument_function)),
+        new Option<std::string>("f", "Optional file", option_function),
+        new Option<void>("h", "Help", void_function)
     });
 
     return 0;

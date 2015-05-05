@@ -18,7 +18,8 @@ TESTS = \
 	option_handles_negative_float_value.test \
 	option_handles_boolean_value.test \
 	option_handles_void_value.test \
-	option_should_match_exact_name.test
+	option_should_match_exact_name.test \
+	option_should_throw_exception_on_missing_value.test
 
 noinst_PROGRAMS = $(TESTS)
 
@@ -46,3 +47,4 @@ option_handles_negative_float_value_test_SOURCES  = option/handles_negative_floa
 option_handles_boolean_value_test_SOURCES  = option/handles_boolean_value.cpp
 option_handles_void_value_test_SOURCES  = option/handles_void_value.cpp
 option_should_match_exact_name_test_SOURCES  = option/should_match_exact_name.cpp
+option_should_throw_exception_on_missing_value_test_SOURCES = option/should_throw_exception_on_missing_value.cpp

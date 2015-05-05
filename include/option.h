@@ -99,7 +99,7 @@ namespace command {
 
                 std::stringstream ss;
                 ss << argv.substr(pos + 1);
-                ss >> value;// memory leak? when is uncommented, and exception is
+                ss >> value;// memory leak? when uncommented and exception is
                             // thrown, valgrind shows e.g.:
                             //  possibly lost: 380 bytes in 7 blocks
 

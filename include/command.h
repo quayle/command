@@ -60,7 +60,7 @@ namespace command {
             }
             for(Parameter *param : parameters) {
                 if (param->isRequired() && !param->isUsed()) {
-                    throw std::logic_error(param->describe() + " is required but it was not handled");
+                    throw std::logic_error(param->describe() + " is required but it was not passed");
                 }
             }
         }

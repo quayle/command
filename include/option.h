@@ -13,9 +13,9 @@ namespace command {
      * Options are named parameters of program.
      *
      * Example:
-     *  ./myprog OptionName=OptionValue
-     *  ./myprog -f=/some/file
-     *  ./myprog --level=15
+     *  - ./myprog OptionName=OptionValue
+     *  - ./myprog -f=/some/file
+     *  - ./myprog --level=15
      */
     template<typename ParameterType>
     class Option
@@ -51,7 +51,7 @@ namespace command {
         virtual ~Option() { }
 
         /**
-         *
+         * \inheritdoc
          */
         virtual void handle() {
             this->call(value);

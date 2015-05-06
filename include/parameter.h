@@ -32,23 +32,34 @@ namespace command {
         virtual ~Parameter() { }
 
         /**
-         * Method used for handling method calls linked with Argument or Option
+         * Method used for handling method calls linked with this Parameter
          */
         virtual void handle() = 0;
 
         /**
          * Method used for checking if the given user value understandable for
          * parameter.
+         *
+         * @return true if passed value is understandable by current Parameter.
+         *      False otherwise.
          */
         virtual bool understand(const std::string & ) = 0;
 
         /**
          * Indicates if current Parameter is required
+         *
+         * @return false, as all Parameters are non-required by default. If you
+         *      want to make Parameter as required, wrap it using Required class
          */
         virtual bool isRequired() {
             return false;
         };
 
+        /**
+         * Indicates if current Parameter has been already used
+         *
+         * @return true if current Parameter has been already used. False otherwise.
+         */
         virtual bool isUsed() {
             return used;
         }

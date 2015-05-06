@@ -32,17 +32,20 @@ namespace command {
         }
 
         /**
-         * Method used for handling method calls to linked Parameter
+         * Wrapper method around passed Parameter::handle().
+         *
+         * \inheritdoc
          */
         virtual void handle() {
             parameter->handle();
         }
 
         /**
-         * Method used for checking if the given user value is understandable by
-         * parameter.
+         * Wrapper method around passed Parameter::understand()
          *
-         * @param value value from argv to check against
+         * @param argv command line value against which test will be made
+         *
+         * \inheritdoc
          */
         virtual bool understand(const std::string & value) {
             return parameter->understand(value);
@@ -50,13 +53,19 @@ namespace command {
 
         /**
          * Indicates if current Parameter is required
+         *
+         * @return true, as all Parameters wrapped in Required class are set as
+         *      required. In order to make them non-required do not use
+         *      Required class
          */
         virtual bool isRequired() {
             return true;
         };
 
         /**
-         * Indicates if current Parameter is already used
+         * Wrapper method around passed Parameter::isUsed().
+         *
+         * \inheritdoc
          */
         virtual bool isUsed() {
             return parameter->isUsed();

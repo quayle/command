@@ -14,9 +14,9 @@ namespace command {
      * Arguments are non-named parameters of program.
      *
      * Example:
-     *  ./myprog ARGUMENT
-     *  ./myprog /path/to/file
-     *  ./myprog "some argument"
+     *  - ./myprog ARGUMENT
+     *  - ./myprog /path/to/file
+     *  - ./myprog "some argument"
      */
     template<typename ParameterType>
     class Argument : public Parameter, public Callable<ParameterType> {
@@ -41,7 +41,7 @@ namespace command {
         virtual ~Argument() { }
 
         /**
-         *
+         * \inheritdoc
          */
         virtual void handle() {
             this->call(value);

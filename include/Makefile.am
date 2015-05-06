@@ -4,4 +4,5 @@ nobase_pkginclude_HEADERS = \
     parameter.h \
     argument.h \
     option.h \
-    command.h
+    command.h \
+    required.h

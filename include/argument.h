@@ -18,10 +18,10 @@ namespace command {
      *  ./myprog /path/to/file
      *  ./myprog "some argument"
      */
-    template<typename ArgumentType>
-    class Argument : public Parameter, public Callable<ArgumentType> {
+    template<typename ParameterType>
+    class Argument : public Parameter, public Callable<ParameterType> {
     protected:
-        ArgumentType value;
+        ParameterType value;
     public:
         typedef class Argument Type;
 
@@ -31,8 +31,8 @@ namespace command {
          * @param description Description of current Argument
          * @param function Function used to handle current Argument.
          */
-        Argument(const std::string & description, void (*function)(ArgumentType))
-            : Parameter(description), Callable<ArgumentType>(function) {
+        Argument(const std::string & description, void (*function)(ParameterType))
+            : Parameter(description), Callable<ParameterType>(function) {
         }
 
         /**
@@ -52,13 +52,13 @@ namespace command {
          * If so current Argument is flagged as used and no more checks against
          * it will be done in future.
          *
-         * \attention If conversion from passed value to ArgumentType is
+         * \attention If conversion from passed value to ParameterType is
          * impossible, it is ignored. It means that it is not understanded by
          * Argument.
          *
          * @param argv command line value against which test will be made.
          *
-         * @return If passed argv is succesfully converted to ArgumentType,
+         * @return If passed argv is succesfully converted to ParameterType,
          *  returns true and Argument is set as used one. If there was an error
          *  during conversion, method returns false and can be used to check
          *  against next value.

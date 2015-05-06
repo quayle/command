@@ -7,13 +7,13 @@ namespace command {
     /**
      * Callable behaviour class.
      */
-    template<typename ArgumentType>
+    template<typename ParameterType>
     class Callable {
     protected:
         /**
          * Function handling user Arguments
          */
-        void (*func)(ArgumentType);
+        void (*func)(ParameterType);
 
     public:
         /**
@@ -21,7 +21,7 @@ namespace command {
          *
          * @param function Function that will be invoked
          */
-        Callable(void (*function)(ArgumentType))
+        Callable(void (*function)(ParameterType))
             : func(function) {
         }
 
@@ -33,7 +33,7 @@ namespace command {
          *
          * @param value Value passed to program argument
          */
-        void call(ArgumentType value) {
+        void call(ParameterType value) {
             this->func(value);
         }
     };

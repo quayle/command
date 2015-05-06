@@ -17,9 +17,9 @@ namespace command {
      *  ./myprog -f=/some/file
      *  ./myprog --level=15
      */
-    template<typename OptionType>
+    template<typename ParameterType>
     class Option
-        : public Parameter, public Callable<OptionType>  {
+        : public Parameter, public Callable<ParameterType>  {
     public:
         typedef std::string OptionName;
     protected:
@@ -31,7 +31,7 @@ namespace command {
         /**
          * Current Option value
          */
-        OptionType value;
+        ParameterType value;
 
     public:
         /**
@@ -41,8 +41,8 @@ namespace command {
          * @param description Description of current Option
          * @param function Function used to handle current Option.
          */
-        Option(const std::string & name, const std::string & description, void (*function)(OptionType))
-            : Parameter(description), Callable<OptionType>(function), name(name) {
+        Option(const std::string & name, const std::string & description, void (*function)(ParameterType))
+            : Parameter(description), Callable<ParameterType>(function), name(name) {
         }
 
         /**
@@ -68,7 +68,7 @@ namespace command {
          * If no equal sign is after OptionName part,
          * std::invalid_argument exception with appropriate message is thrown
          *
-         * If conversion of OptionValue part to OptionType failed,
+         * If conversion of OptionValue part to ParameterType failed,
          * std::invalid_argument exception with appropriate message is thrown
          *
          * @param argv command line value against which test will be made.
@@ -76,13 +76,13 @@ namespace command {
          *
          * @return If passed argv succesfully detected OptionName part as a
          *  current option and its OptionValue part has been succesfully
-         *  converted to OptionType, returns true and Option is set as used one.
+         *  converted to ParameterType, returns true and Option is set as used one.
          *  Otherwise returns false and can be used to check against next value.
          *
          * @throw std::invalid_argument when OptionName part has no equal sign
          *  after itself
          * @throw std::invalid_argument when OptionValue part failed conversion
-         *  to OptionType
+         *  to ParameterType
          */
         virtual bool understand(const std::string & argv)
             throw(std::invalid_argument) {

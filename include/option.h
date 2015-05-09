@@ -6,6 +6,8 @@
 #include <stdexcept>
 
 #include "parameter.h"
+#include "exception/missingOptionValue.h"
+#include "exception/optionFailedConversion.h"
 
 namespace command {
     /**
@@ -79,29 +81,26 @@ namespace command {
          *  converted to ParameterType, returns true and Option is set as used one.
          *  Otherwise returns false and can be used to check against next value.
          *
-         * @throw std::invalid_argument when OptionName part has no equal sign
-         *  after itself
-         * @throw std::invalid_argument when OptionValue part failed conversion
+         * @throw MissingOptionValue when OptionValue part is missing after
+         *  equal sign
+         * @throw OptionFailedConversion when OptionValue part failed conversion
          *  to ParameterType
          */
-        virtual bool understand(const std::string & argv)
-            throw(std::invalid_argument) {
+        virtual bool understand(const std::string & argv) {
 
             if ((!isUsed()) && (argv.find(name) == 0)) {
                 std::size_t pos = argv.find("=");
 
                 if (pos != name.size()) {
-                    throw std::invalid_argument("Option: " + name + " requires value but no one has been provided");
+                    throw MissingOptionValue("Option: " + name + " requires value but no one has been provided");
                 }
 
                 std::stringstream ss;
                 ss << argv.substr(pos + 1);
-                ss >> value;// memory leak? when uncommented and exception is
-                            // thrown, valgrind shows e.g.:
-                            //  possibly lost: 380 bytes in 7 blocks
+                ss >> value;
 
                 if (ss.fail()) {
-                    throw std::invalid_argument("Value for option: " + name + " failed conversion to the required type");
+                    throw OptionFailedConversion("Value for option: " + name + " failed conversion to the required type");
                 }
 
                 used = true;

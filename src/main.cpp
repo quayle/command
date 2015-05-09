@@ -21,12 +21,18 @@ void void_function(void) {
 }
 
 int main(int argc, char *argv[]) {
-    Command command(argc, argv, {
-//         new Argument<std::string>("File path", [](std::string value)->void { std::cout << "Hello from lambda " << value << std::endl; }),
-        new Required(new Argument<bool>("File path", argument_function)),
-        new Option<std::string>("f", "Optional file", option_function),
-        new Option<void>("h", "Help", void_function)
-    });
+    try {
+        Command command(argc, argv, {
+//             new Argument<std::string>("File path", [](std::string value)->void { std::cout << "Hello from lambda " << value << std::endl; }),
+            new Required(new Argument<bool>("File path", argument_function)),
+            new Option<std::string>("f", "Optional file", option_function),
+            new Option<void>("h", "Help", void_function)
+        });
+
+    }
+    catch(const std::exception & e) {
+        std::cout << e.what() << std::endl;
+    }
 
     return 0;
 }

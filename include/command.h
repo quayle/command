@@ -6,6 +6,7 @@
 #include <typeinfo>
 
 #include "parameter.h"
+#include "exception/missingRequiredParameter.h"
 
 namespace command {
     /**
@@ -29,11 +30,11 @@ namespace command {
             try {
                 matchArguments(argc, argv);
             }
-            catch(std::invalid_argument exception) {
+            catch(const std::invalid_argument & exception) {
                 releaseMemory();
                 throw;
             }
-            catch(std::logic_error exception) {
+            catch(const std::logic_error & exception) {
                 releaseMemory();
                 throw;
             }
@@ -60,7 +61,7 @@ namespace command {
             }
             for(Parameter *param : parameters) {
                 if (param->isRequired() && !param->isUsed()) {
-                    throw std::logic_error(param->describe() + " is required but it was not passed");
+                    throw MissingRequiredParameter(param->describe() + " is required but it was not passed");
                 }
             }
         }

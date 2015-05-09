@@ -7,21 +7,20 @@
 namespace command {
 
 /**
- * Helper template class used for releasing resources.
+ * Exception thrown used when Option's value failed conversion to specific type
+ *
+ * e.g.:
+ *  "a" -> int
  */
 class OptionFailedConversion : public std::invalid_argument {
-protected:
-    std::string message;
 public:
+    /** \inheritdoc */
     explicit OptionFailedConversion(const std::string& what_arg) :
-        std::invalid_argument(what_arg), message(what_arg) { }
+        std::invalid_argument(what_arg) { }
 
+    /** \inheritdoc */
     explicit OptionFailedConversion(const char* what_arg) :
-        std::invalid_argument(what_arg), message(what_arg) { }
-
-    virtual const char* what() const throw() {
-        return message.c_str();
-    }
+        std::invalid_argument(what_arg) { }
 };
 
 }

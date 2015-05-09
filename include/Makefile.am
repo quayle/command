@@ -5,4 +5,7 @@ nobase_pkginclude_HEADERS = \
     argument.h \
     option.h \
     command.h \
-    required.h
+    required.h \
+    exception/missingOptionValue.h \
+    exception/missingRequiredParameter.h \
+    exception/optionFailedConversion.h

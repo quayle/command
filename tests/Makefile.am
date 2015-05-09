@@ -5,6 +5,7 @@ TESTS = \
 	callable_invokes_provided_function.test \
 	callable_invokes_void_function.test \
 	parameter_is_descriptive.test \
+	parameter_should_be_non_required.test \
 	argument_handles_string_value.test \
 	argument_handles_int_value.test \
 	argument_handles_negative_int_value.test \
@@ -32,6 +33,7 @@ callable_invokes_provided_function_test_SOURCES  = callable/invokes_provided_fun
 callable_invokes_void_function_test_SOURCES  = callable/invokes_void_function.cpp
 
 parameter_is_descriptive_test_SOURCES  = parameter/is_descriptive.cpp
+parameter_should_be_non_required_test_SOURCES = parameter/should_be_non_required.cpp
 
 argument_handles_string_value_test_SOURCES  = argument/handles_string_value.cpp
 argument_handles_int_value_test_SOURCES  = argument/handles_int_value.cpp

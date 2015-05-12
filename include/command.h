@@ -53,7 +53,7 @@ namespace command {
         void matchArguments(unsigned int argc, char *argv[]) {
             for (unsigned int i = 1; i < argc; i++) {
                 for(Parameter *param : parameters) {
-                    if (param->understand(argv[i])) {
+                    if (!param->isUsed() && param->understand(argv[i])) {
                         param->handle();
                         break;
                     }

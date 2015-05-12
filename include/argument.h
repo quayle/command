@@ -45,6 +45,7 @@ namespace command {
          */
         virtual void handle() {
             this->call(value);
+            this->used = true;
         }
 
         /**
@@ -64,16 +65,13 @@ namespace command {
          *  against next value.
          */
         virtual bool understand(const std::string & argv) {
-            if (!isUsed()) {
-                std::stringstream ss;
+            std::stringstream ss;
 
-                ss << argv;
-                ss >> value;
+            ss << argv;
+            ss >> value;
 
-                if (!ss.fail()) {
-                    this->used = true;
-                    return true;
-                }
+            if (!ss.fail()) {
+                return true;
             }
 
             return false;

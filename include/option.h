@@ -57,6 +57,7 @@ namespace command {
          */
         virtual void handle() {
             this->call(value);
+            used = true;
         }
 
         /**
@@ -88,7 +89,7 @@ namespace command {
          */
         virtual bool understand(const std::string & argv) {
 
-            if ((!isUsed()) && (argv.find(name) == 0)) {
+            if (argv.find(name) == 0) {
                 std::size_t pos = argv.find("=");
 
                 if (pos != name.size()) {
@@ -103,7 +104,6 @@ namespace command {
                     throw OptionFailedConversion("Value for option: " + name + " failed conversion to the required type");
                 }
 
-                used = true;
                 return true;
             }
             return false;
@@ -149,6 +149,7 @@ namespace command {
          */
         virtual void handle() {
             this->call();
+            used = true;
         }
 
         /**
@@ -167,9 +168,7 @@ namespace command {
          *  used to check against next value.
          */
         virtual bool understand(const std::string & argv) {
-            if ((!isUsed()) &&
-                (argv == name)) {
-                used = true;
+            if (argv == name) {
                 return true;
             }
             return false;

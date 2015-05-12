@@ -8,6 +8,7 @@
 #include "parameter.h"
 #include "exception/missingOptionValue.h"
 #include "exception/optionFailedConversion.h"
+#include "exception/optionValueNotSpecified.h"
 
 namespace command {
     /**
@@ -90,7 +91,7 @@ namespace command {
         virtual bool understand(const std::string & argv) {
 
             if (argv.find(name) == 0) {
-                std::size_t pos = argv.find("=");
+                std::size_t pos = this->valuePosition(argv);
 
                 if (pos != name.size()) {
                     throw MissingOptionValue("Option: " + name + " requires value but no one has been provided");
@@ -112,8 +113,14 @@ namespace command {
         /**
          * \inheritdoc
          */
-        virtual unsigned int valuePosition(const std::string & argv) {
-            return argv.find("=");
+        virtual unsigned int valuePosition(const std::string & value) {
+            std::size_t pos = value.find("=");
+
+            if (pos == std::string::npos) {
+                throw OptionValueNotSpecified("Option: " + name + " requires value to be specified using equal sign");
+            }
+
+            return pos;
         }
     };
 
@@ -185,7 +192,7 @@ namespace command {
          * \inheritdoc
          */
         virtual unsigned int valuePosition(const std::string & ) {
-            throw new std::invalid_argument(this->describe() + "is void Option, so it does not have value part");
+            throw new std::invalid_argument(this->describe() + " is void Option, so it does not have value part");
         }
     };
 }

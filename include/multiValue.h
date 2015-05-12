@@ -2,6 +2,7 @@
 #define __COMMAND_MULTIVALUE_H
 
 #include <iostream>
+#include <vector>
 
 #include "parameter.h"
 

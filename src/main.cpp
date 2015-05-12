@@ -4,6 +4,7 @@
 #include "option.h"
 #include "argument.h"
 #include "required.h"
+#include "multiValue.h"
 #include "command.h"
 
 using namespace command;
@@ -24,8 +25,8 @@ int main(int argc, char *argv[]) {
     try {
         Command command(argc, argv, {
 //             new Argument<std::string>("File path", [](std::string value)->void { std::cout << "Hello from lambda " << value << std::endl; }),
-            new Required(new Argument<bool>("File path", argument_function)),
-            new Option<std::string>("f", "Optional file", option_function),
+            new Required(new MultiValue("-", new Argument<bool>("Input values", argument_function))),
+            new MultiValue(",", new Option<std::string>("f", "Optional file", option_function)),
             new Option<void>("h", "Help", void_function)
         });
 

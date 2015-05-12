@@ -67,13 +67,18 @@ namespace command {
          * \inheritdoc
          */
         virtual bool understand(const std::string & value) {
-            size_t start = 0;
+            size_t start = parameter->valuePosition(value);
             size_t pos = 0;
             bool _understand = true;
+            std::string prefix = "";
+
+            if (start > 0) {
+                prefix = value.substr(0, ++start);// always count: "="
+            }
 
             do {
                 pos = value.find(separator, start);
-                values.push_back(value.substr(start, pos-start));
+                values.push_back(prefix + value.substr(start, pos-start));
                 _understand &= parameter->understand(values.back());
                 start = pos + 1;
             } while ((pos != std::string::npos) && (start < value.size()));
@@ -99,6 +104,15 @@ namespace command {
         virtual bool isUsed() {
             return parameter->isUsed();
         };
+
+        /**
+         * Wrapper method around passed Parameter::valuePosition().
+         *
+         * \inheritdoc
+         */
+        virtual unsigned int valuePosition(const std::string & value) {
+            return parameter->valuePosition(value);
+        }
     };
 }
 

@@ -22,7 +22,8 @@ TESTS = \
 	option_should_match_exact_name.test \
 	option_should_throw_exception_on_missing_value.test \
 	required_should_be_required.test \
-	multivalue_should_extract_values_by_separator.test
+	multivalue_should_extract_arguments_by_separator.test \
+	multivalue_should_extract_options_by_separator.test
 
 noinst_PROGRAMS = $(TESTS)
 
@@ -55,4 +56,5 @@ option_should_throw_exception_on_missing_value_test_SOURCES = option/should_thro
 
 required_should_be_required_test_SOURCES = required/should_be_required.cpp
 
-multivalue_should_extract_values_by_separator_test_SOURCES = multiValue/should_extract_values_by_separator.cpp
+multivalue_should_extract_arguments_by_separator_test_SOURCES = multiValue/should_extract_arguments_by_separator.cpp
+multivalue_should_extract_options_by_separator_test_SOURCES = multiValue/should_extract_options_by_separator.cpp

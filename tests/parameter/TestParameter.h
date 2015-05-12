@@ -7,4 +7,8 @@ public:
 
     virtual void handle() { }
     virtual bool understand(const std::string & ) { return false; }
+
+    virtual unsigned int valuePosition(const std::string & value) {
+        return 0;
+    }
 };

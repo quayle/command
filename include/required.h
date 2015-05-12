@@ -69,7 +69,16 @@ namespace command {
          */
         virtual bool isUsed() {
             return parameter->isUsed();
-        };
+        }
+
+        /**
+         * Wrapper method around passed Parameter::valuePosition().
+         *
+         * \inheritdoc
+         */
+        virtual unsigned int valuePosition(const std::string & value) {
+            return parameter->valuePosition(value);
+        }
     };
 }
 

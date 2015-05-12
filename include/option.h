@@ -108,6 +108,13 @@ namespace command {
             }
             return false;
         }
+
+        /**
+         * \inheritdoc
+         */
+        virtual unsigned int valuePosition(const std::string & argv) {
+            return argv.find("=");
+        }
     };
 
     /**
@@ -172,6 +179,13 @@ namespace command {
                 return true;
             }
             return false;
+        }
+
+        /**
+         * \inheritdoc
+         */
+        virtual unsigned int valuePosition(const std::string & ) {
+            throw new std::invalid_argument(this->describe() + "is void Option, so it does not have value part");
         }
     };
 }

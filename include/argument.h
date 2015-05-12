@@ -76,6 +76,13 @@ namespace command {
 
             return false;
         }
+
+        /**
+         * \inheritdoc
+         */
+        virtual unsigned int valuePosition(const std::string & ) {
+            return 0;
+        }
     };
 }
 

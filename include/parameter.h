@@ -63,6 +63,11 @@ namespace command {
         virtual bool isUsed() {
             return used;
         }
+
+        /**
+         * @return position where value starts in passed string
+         */
+        virtual unsigned int valuePosition(const std::string & ) = 0;
     };
 }
 

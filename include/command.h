@@ -4,31 +4,32 @@
 #include <string>
 #include <vector>
 #include <typeinfo>
+#include <iostream>
 
 #include "parameter.h"
-#include "exception/missingRequiredParameter.h"
+#include "grouped.h"
 
 namespace command {
     /**
      * Main class for handling user passed parameters from command line.
      */
-    class Command {
-    protected:
-        std::vector<Parameter *> parameters;
+    class Command : protected Grouped {
     public:
         /**
          * Default constructor.
          *
-         * @param argc passed to the main function
-         * @param argv passed to the main function
+         * @param argc from the main function
+         * @param argv from the main function
          * @param params initializer_list containing Parameter handlers
          *      responsible for correctly handle user data.
          */
         Command(unsigned int argc, char *argv[], std::initializer_list<Parameter *> params)
-            : parameters(params) {
-
+            : Grouped(params, "Command") {
             try {
-                matchArguments(argc, argv);
+                for (unsigned int i = 1; i < argc; i++) {
+                    this->understand(argv[i]);
+                }
+                handle();
             }
             catch(const std::invalid_argument & exception) {
                 releaseMemory();
@@ -45,38 +46,6 @@ namespace command {
          */
         ~Command() {
             releaseMemory();
-        }
-    protected:
-        /**
-         * Matches user passed arguments with available parameter handlers.
-         */
-        void matchArguments(unsigned int argc, char *argv[]) {
-            for (unsigned int i = 1; i < argc; i++) {
-                for(Parameter *param : parameters) {
-                    if (!param->isUsed() && param->understand(argv[i])) {
-                        param->handle();
-                        break;
-                    }
-                }
-            }
-            for(Parameter *param : parameters) {
-                if (param->isRequired() && !param->isUsed()) {
-                    throw MissingRequiredParameter(param->describe() + " is required but it was not passed");
-                }
-            }
-        }
-
-        /**
-         * Releases acquired memory
-         */
-        void releaseMemory() {
-            for (Parameter * parameter : parameters) {
-                if (parameter != NULL) {
-                    delete parameter;
-                }
-            }
-            parameters.clear();
-            parameters.shrink_to_fit();
         }
     };
 }

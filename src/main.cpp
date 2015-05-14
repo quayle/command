@@ -5,6 +5,7 @@
 #include "argument.h"
 #include "required.h"
 #include "multiValue.h"
+#include "grouped.h"
 #include "command.h"
 
 using namespace command;
@@ -24,12 +25,12 @@ void void_function(void) {
 int main(int argc, char *argv[]) {
     try {
         Command command(argc, argv, {
-//             new Argument<std::string>("File path", [](std::string value)->void { std::cout << "Hello from lambda " << value << std::endl; }),
-            new Required(new MultiValue("-", new Argument<bool>("Input values", argument_function))),
-            new MultiValue(",", new Option<std::string>("f", "Optional file", option_function)),
+            new Grouped({
+                new Required(new MultiValue("-", new Argument<bool>("Input values", argument_function))),
+                new MultiValue(",", new Option<std::string>("f", "Optional file", option_function))
+            }),
             new Option<void>("h", "Help", void_function)
         });
-
     }
     catch(const std::exception & e) {
         std::cout << e.what() << std::endl;

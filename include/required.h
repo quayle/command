@@ -82,4 +82,4 @@ namespace command {
     };
 }
 
-#endif /* __COMMAND_PARAMETER_H */
+#endif /* __COMMAND_REQUIRED_H */

@@ -2,6 +2,7 @@
 #define __COMMAND_PARAMETER_H
 
 #include <string>
+#include <sstream>
 
 #include "descriptive.h"
 #include "callable.h"
@@ -62,6 +63,12 @@ namespace command {
          */
         virtual bool isUsed() {
             return used;
+        }
+
+        /**
+         */
+        virtual bool hungryForValue() {
+            return false;
         }
 
         /**

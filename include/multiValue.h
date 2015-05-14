@@ -68,10 +68,16 @@ namespace command {
          * \inheritdoc
          */
         virtual bool understand(const std::string & value) {
-            size_t start = parameter->valuePosition(value);
+            size_t start = 0;
             size_t pos = 0;
             bool _understand = true;
             std::string prefix = "";
+
+            start = parameter->valuePosition(value);
+
+            if (start > value.size()) {
+                return false;
+            }
 
             if (start > 0) {
                 prefix = value.substr(0, ++start);// always count: "="
@@ -82,8 +88,12 @@ namespace command {
                 values.push_back(prefix + value.substr(start, pos-start));
                 _understand &= parameter->understand(values.back());
                 start = pos + 1;
-            } while ((pos != std::string::npos) && (start < value.size()));
 
+                if (!_understand) {
+                    values.clear();
+                    break;
+                }
+            } while ((pos != std::string::npos) && (start < value.size()));
             return _understand;
         }
 
@@ -117,4 +127,4 @@ namespace command {
     };
 }
 
-#endif /* __COMMAND_PARAMETER_H */
+#endif /* __COMMAND_MULTIVALUE_H */

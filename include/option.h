@@ -89,8 +89,7 @@ namespace command {
          *  to ParameterType
          */
         virtual bool understand(const std::string & argv) {
-
-            if (argv.find(name) == 0) {
+            if (this->hasName(argv)) {
                 std::size_t pos = this->valuePosition(argv);
 
                 if (pos != name.size()) {
@@ -98,11 +97,11 @@ namespace command {
                 }
 
                 std::stringstream ss;
-                ss << argv.substr(pos + 1);
+                ss << std::fixed << argv.substr(pos + 1);
                 ss >> value;
 
                 if (ss.fail()) {
-                    throw OptionFailedConversion("Value for option: " + name + " failed conversion to the required type");
+                    throw OptionFailedConversion("Option: " + name + " failed value conversion to the required type");
                 }
 
                 return true;
@@ -116,11 +115,16 @@ namespace command {
         virtual unsigned int valuePosition(const std::string & value) {
             std::size_t pos = value.find("=");
 
-            if (pos == std::string::npos) {
-                throw OptionValueNotSpecified("Option: " + name + " requires value to be specified using equal sign");
+            if ((this->hasName(value)) && (pos == std::string::npos)) {
+                throw OptionValueNotSpecified("Option: " + name + " requires value to be specified after equal sign, but no equal sign was found");
             }
 
             return pos;
+        }
+
+    protected:
+        bool hasName(const std::string & argv) {
+            return argv.find(name) == 0;
         }
     };
 

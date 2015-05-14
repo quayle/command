@@ -67,7 +67,7 @@ namespace command {
         virtual bool understand(const std::string & argv) {
             std::stringstream ss;
 
-            ss << argv;
+            ss << std::fixed << argv;
             ss >> value;
 
             if (!ss.fail()) {

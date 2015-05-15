@@ -1,6 +1,6 @@
 AUTOMAKE_OPTIONS = subdir-objects
 
-TESTS = \
+TEST_PROGS = \
 	descriptive_holds_data.test \
 	callable_invokes_provided_function.test \
 	callable_invokes_void_function.test \
@@ -25,9 +25,25 @@ TESTS = \
 	multivalue_should_extract_arguments_by_separator.test \
 	multivalue_should_extract_options_by_separator.test
 
-noinst_PROGRAMS = $(TESTS)
+TEST_SCRPTS = \
+	command/understand_void_option.test \
+	command/understand_bool_option.test
+
+TESTS = \
+	$(TEST_PROGS) \
+	$(TEST_SCRPTS)
+
+EXTRA_DIST = \
+	$(TEST_SCRPTS)
+
+noinst_PROGRAMS = \
+	$(TEST_PROGS) \
+	command/option_test_command
 
 AM_CXXFLAGS = -I$(top_srcdir)/include -std=c++11
+
+check-% :	%.test all
+	@srcdir=$(srcdir); export srcdir;
 
 descriptive_holds_data_test_SOURCES  = descriptive/holds_data.cpp
 
@@ -58,3 +74,5 @@ required_should_be_required_test_SOURCES = required/should_be_required.cpp
 
 multivalue_should_extract_arguments_by_separator_test_SOURCES = multiValue/should_extract_arguments_by_separator.cpp
 multivalue_should_extract_options_by_separator_test_SOURCES = multiValue/should_extract_options_by_separator.cpp
+
+command_option_test_command_SOURCES = command/src/option_test_command.cpp

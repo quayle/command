@@ -1,4 +1,4 @@
-AC_INIT([Command], [0.1], [bugz@dlugolecki.net.pl], [command], [http://dlugolecki.net.pl/software/command/])
+AC_INIT([Command], [0.2], [bugz@dlugolecki.net.pl], [command], [http://dlugolecki.net.pl/software/command/])
 AC_PREREQ([2.59])
 AM_INIT_AUTOMAKE([1.10 -Wall])
 AC_CONFIG_HEADERS([config.h])

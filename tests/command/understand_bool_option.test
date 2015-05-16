@@ -1,0 +1,11 @@
+#!/bin/sh
+
+for t in 0 1; do
+    TEST=$($srcdir/command/option_test_command bool=$t)
+    if [ ! "$TEST" = "bool: $t" ]; then
+        echo "Command should understand Option<bool>. Expecting output: 'bool: $t', got: '$TEST'. Program exited with $? code."
+        return 1;
+    fi
+done
+
+return 0;

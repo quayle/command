@@ -6,6 +6,8 @@ nobase_pkginclude_HEADERS = \
     option.h \
     command.h \
     required.h \
+    grouped.h \
     exception/missingOptionValue.h \
     exception/missingRequiredParameter.h \
-    exception/optionFailedConversion.h
+    exception/optionFailedConversion.h \
+    exception/optionValueNotSpecified.h

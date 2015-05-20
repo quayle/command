@@ -26,6 +26,9 @@ int main(int argc, char *argv[]) {
             new Option<int>("int", "int Test", [](int i) {
                 std::cout << "int: " << i << std::endl;
             }),
+            new Option<unsigned int>("unsigned-int", "unsigned int Test", [](unsigned int i) {
+                std::cout << "unsigned int: " << i << std::endl;
+            }),
             new Option<float>("float", "float Test", [](float f) {
                 std::cout << "float: " << f << std::endl;
             }),

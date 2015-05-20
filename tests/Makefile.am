@@ -1,33 +1,35 @@
 AUTOMAKE_OPTIONS = subdir-objects
 
 TEST_PROGS = \
-	descriptive_holds_data.test \
-	callable_invokes_provided_function.test \
-	callable_invokes_void_function.test \
-	parameter_is_descriptive.test \
-	parameter_should_be_non_required.test \
-	argument_handles_string_value.test \
-	argument_handles_int_value.test \
-	argument_handles_negative_int_value.test \
-	argument_handles_float_value.test \
-	argument_handles_negative_float_value.test \
-	argument_handles_boolean_value.test \
-	option_handles_string_value.test \
-	option_handles_int_value.test \
-	option_handles_negative_int_value.test \
-	option_handles_float_value.test \
-	option_handles_negative_float_value.test \
-	option_handles_boolean_value.test \
-	option_handles_void_value.test \
-	option_should_match_exact_name.test \
-	option_should_throw_exception_on_missing_value.test \
-	required_should_be_required.test \
-	multivalue_should_extract_arguments_by_separator.test \
-	multivalue_should_extract_options_by_separator.test
+	descriptive/holds_data.test \
+	callable/invokes_provided_function.test \
+	callable/invokes_void_function.test \
+	parameter/is_descriptive.test \
+	parameter/should_be_non_required.test \
+	argument/handles_string_value.test \
+	argument/handles_int_value.test \
+	argument/handles_negative_int_value.test \
+	argument/handles_float_value.test \
+	argument/handles_negative_float_value.test \
+	argument/handles_boolean_value.test \
+	option/handles_string_value.test \
+	option/handles_int_value.test \
+	option/handles_negative_int_value.test \
+	option/handles_float_value.test \
+	option/handles_negative_float_value.test \
+	option/handles_boolean_value.test \
+	option/handles_void_value.test \
+	option/should_match_exact_name.test \
+	option/should_throw_exception_on_missing_value.test \
+	required/should_be_required.test \
+	multivalue/should_extract_arguments_by_separator.test \
+	multivalue/should_extract_options_by_separator.test
 
 TEST_SCRPTS = \
 	command/understand_void_option.test \
-	command/understand_bool_option.test
+	command/understand_bool_option.test \
+	command/understand_int_option.test \
+	command/understand_unsigned_int_option.test
 
 TESTS = \
 	$(TEST_PROGS) \

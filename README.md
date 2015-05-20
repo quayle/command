@@ -119,7 +119,9 @@ More complex example:
 
 Above code allows us to:
 
-Parameters wrapped in Required class, have validator which checks if argument 
+Parameters wrapped in Required class, have validator which checks if argument is
+passed:
+
     $ ./a.out
     *Input values* is required
 
@@ -136,6 +138,7 @@ Parameters wrapped in Required class, have validator which checks if argument
     Option: f failed value conversion to the required type
 
 For MultiValue Parameters each value is passed to the given function:
+
     $ ./a.out 1-0-1
     Argument: 1
     Argument: 0

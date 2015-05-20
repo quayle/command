@@ -1,18 +1,45 @@
-Command, a C++ library for handling command line arguments
+# Command
 
-Designing to be used like follows:
+C++ library for handling command line arguments, designed to be easily used.
 
-Example:
+## Installation
+1. $ ./autogen.sh
+2. $ ./configure
+3. $ make
+4. $ sudo make install
 
-    void some_function(std::string str) {
-        std::cout << "Some function" << std::endl;
+## Configuration
+
+You need to enable c++11 support in your compiler. You can achieve that in
+g++ and clang++ by adding `-std=c++11` compilation flag.
+
+As this is header-only library, you don't need any additional steps.
+
+## Usage
+
+example.cpp:
+
+    #include <iostream>
+    #include <command/command.h>
+    #include <command/option.h>
+
+    using namespace command;
+
+    int main(int argc, char *argv[]) {
+        try {
+            Command command(argc, argv, {
+                new Option<void>("-h", "Help", [](void) { std::cout << "Help information\n"; })
+            });
+        }
+        catch(const std::exception & e) {
+            return 1;
+        }
+
+        return 0;
     }
 
-    command::Command command(argc, argv, {
-        command::Option<std::string>("f", "File path", [](std::string value)->void { cout << "Sth: " << value << endl; }),
-        command::Argument<std::string>("File path", []()->void { cout << "Sth: " << value << endl; }),
-        command::Option<void>("help", "Help description", [](void)->void { cout << "Sth: " << value << endl; }),
-        command::Option<void>("verbose", "Verbose option description", &myClass->verbose),
-        command::Option<void>("verbose", "Verbose option description", some_function)
-    });
+Now program can be compiled & run using following commands:
 
+    $ g++ -std=c++11 example.cpp
+    $ ./a.out -h
+    Help information

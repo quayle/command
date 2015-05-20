@@ -51,4 +51,4 @@ Current documentation can be found at:
 http://dlugolecki.net.pl/software/command/docs/
 
 If for some reason it is unavailable, you can build it yourself. The only
-requirement is to have [Doxygen](www.doxygen.org/) installed when `make` command is invoked.
+requirement is to have [Doxygen](http://www.doxygen.org/) installed when `make` command is invoked.

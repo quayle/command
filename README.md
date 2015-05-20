@@ -4,6 +4,15 @@ C++ library for handling command line arguments.
 
 ## Installation
 
+### debian package
+
+    $ wget https://github.com/quayle/command/releases/download/v0.2.1-deb/command_0.2.1_all.deb
+    $ sudo dpkg -i command_0.2.1_all.deb
+
+### from sources
+
+You will need to have autotools installed (automake, autoconf, ...)
+
     $ ./autogen.sh
     $ ./configure
     $ make

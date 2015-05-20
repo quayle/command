@@ -1,0 +1,6 @@
+command (0.2.1) unstable; urgency=medium
+
+  * Initial public release.
+  * Added debian package building configuration 
+
+ -- Rafał Długołęcki <rafal@yggdrasil>  Wed, 20 May 2015 21:52:46 +0200

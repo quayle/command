@@ -1,6 +1,6 @@
 # Command
 
-C++ library for handling command line arguments, designed to be easily used.
+C++ library for handling command line arguments.
 
 ## Installation
 

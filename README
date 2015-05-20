@@ -3,10 +3,11 @@
 C++ library for handling command line arguments, designed to be easily used.
 
 ## Installation
-1. $ ./autogen.sh
-2. $ ./configure
-3. $ make
-4. $ sudo make install
+
+    $ ./autogen.sh
+    $ ./configure
+    $ make
+    $ sudo make install
 
 ## Configuration
 
@@ -43,3 +44,11 @@ Now program can be compiled & run using following commands:
     $ g++ -std=c++11 example.cpp
     $ ./a.out -h
     Help information
+
+## Documentation
+
+Current documentation can be found at:
+http://dlugolecki.net.pl/software/command/docs/
+
+If for some reason it is unavailable, you can build it yourself. The only
+requirement is to have [Doxygen](www.doxygen.org/) installed when `make` command is invoked.

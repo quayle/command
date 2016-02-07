@@ -91,6 +91,7 @@ separated by given separator. For each value passed function is invoked:
     )
 
 More complex example:
+
     (...)
     void argument_function(bool a) {
         std::cout << "Argument: " << a << std::endl;

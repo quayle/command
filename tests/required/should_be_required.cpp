@@ -14,11 +14,11 @@ using namespace command;
 
 typedef int Type;
 
-void function(Type val) { }
+void _function(Type val) { }
 
 int main() {
-    Parameter * requiredOption = new Required(new Option<Type>(NAME, "Required Option", function));
-    Parameter * requiredArgument = new Required(new Argument<Type>("Required Argument", function));
+    Parameter * requiredOption = new Required(new Option<Type>(NAME, "Required Option", _function));
+    Parameter * requiredArgument = new Required(new Argument<Type>("Required Argument", _function));
 
     if (!requiredOption->isRequired()) {
         cout << requiredOption->describe() << " should be treated as required but it is not\n";

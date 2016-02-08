@@ -2,6 +2,7 @@
 #define __COMMAND_CALLABLE_H
 
 #include <string>
+#include <functional>
 
 namespace command {
     /**
@@ -13,7 +14,8 @@ namespace command {
         /**
          * Function handling user Arguments
          */
-        void (*func)(ParameterType);
+//         void (*func)(ParameterType);
+        std::function<void(ParameterType)> func;
 
     public:
         /**
@@ -21,7 +23,11 @@ namespace command {
          *
          * @param function Function that will be invoked
          */
-        Callable(void (*function)(ParameterType))
+//         Callable(void (*function)(ParameterType))
+//             : func(function) {
+//         }
+
+        Callable(std::function<void(ParameterType)> function)
             : func(function) {
         }
 
@@ -48,7 +54,8 @@ namespace command {
         /**
          * Function handling user Arguments
          */
-        void (*func)(void);
+//         void (*func)(void);
+        std::function<void(void)> func;
 
     public:
         /**
@@ -56,9 +63,14 @@ namespace command {
          *
          * @param function Function that will be invoked
          */
-        Callable(void (*function)(void))
+//         Callable(void (*function)(void))
+//             : func(function) {
+//         }
+
+        Callable(std::function<void(void)> function)
             : func(function) {
         }
+
         virtual ~Callable() { }
 
     protected:

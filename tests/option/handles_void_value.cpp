@@ -11,12 +11,12 @@ typedef void OptionType;
 
 bool test = false;
 
-void function() {
+void _function() {
     test = true;
 }
 
 int main() {
-    Option<OptionType> option(NAME, "Option with void value", function);
+    Option<OptionType> option(NAME, "Option with void value", _function);
 
     if (option.understand(NAME)) {
         option.handle();

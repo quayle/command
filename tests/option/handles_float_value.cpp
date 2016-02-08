@@ -15,12 +15,12 @@ typedef float OptionType;
 
 OptionType test;
 
-void function(OptionType value) {
+void _function(OptionType value) {
     test = value;
 }
 
 int main() {
-    Option<OptionType> option(NAME, "Option with float value", function);
+    Option<OptionType> option(NAME, "Option with float value", _function);
 
     if (option.understand(OPTION)) {
         option.handle();

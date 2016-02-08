@@ -13,13 +13,13 @@ typedef int ArgumentType;
 
 std::vector<ArgumentType> input;
 
-void function(ArgumentType value) {
+void _function(ArgumentType value) {
     input.push_back(value);
     cout << "Catched value: " << value << "\n";
 }
 
 int main() {
-    Parameter * argument = new MultiValue(",", new Argument<ArgumentType>("Argument as multiValue int", function));
+    Parameter * argument = new MultiValue(",", new Argument<ArgumentType>("Argument as multiValue int", _function));
 
     try {
         if (argument->understand(VALUE)) {

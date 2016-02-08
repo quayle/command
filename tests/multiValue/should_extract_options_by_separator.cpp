@@ -16,13 +16,13 @@ typedef int OptionType;
 
 std::vector<OptionType> input;
 
-void function(OptionType value) {
+void _function(OptionType value) {
     input.push_back(value);
     cout << "Catched value: " << value << "\n";
 }
 
 int main() {
-    Parameter * option = new MultiValue(",", new Option<OptionType>(NAME, "Option as multiValue int", function));
+    Parameter * option = new MultiValue(",", new Option<OptionType>(NAME, "Option as multiValue int", _function));
 
     try {
         if (option->understand(OPTION)) {

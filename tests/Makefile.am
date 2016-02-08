@@ -4,6 +4,7 @@ TEST_PROGS = \
 	descriptive/holds_data.test \
 	callable/invokes_provided_function.test \
 	callable/invokes_void_function.test \
+	callable/invokes_class_method.test \
 	parameter/is_descriptive.test \
 	parameter/should_be_non_required.test \
 	argument/handles_string_value.test \
@@ -51,6 +52,7 @@ descriptive_holds_data_test_SOURCES  = descriptive/holds_data.cpp
 
 callable_invokes_provided_function_test_SOURCES  = callable/invokes_provided_function.cpp
 callable_invokes_void_function_test_SOURCES  = callable/invokes_void_function.cpp
+callable_invokes_class_method_test_SOURCES  = callable/invokes_class_method.cpp
 
 parameter_is_descriptive_test_SOURCES  = parameter/is_descriptive.cpp
 parameter_should_be_non_required_test_SOURCES = parameter/should_be_non_required.cpp

@@ -12,12 +12,12 @@ typedef bool ArgumentType;
 
 ArgumentType test;
 
-void function(ArgumentType value) {
+void _function(ArgumentType value) {
     test = value;
 }
 
 int main() {
-    Argument<ArgumentType> argument("Argument as boolean", function);
+    Argument<ArgumentType> argument("Argument as boolean", _function);
 
     if (argument.understand(FALSE)) {
         argument.handle();
@@ -31,7 +31,7 @@ int main() {
         cout << "Argument class handles boolean (FALSE) values\n";
     }
 
-    Argument<ArgumentType> argument2("Argument as boolean", function);
+    Argument<ArgumentType> argument2("Argument as boolean", _function);
     if (argument2.understand(TRUE)) {
         argument2.handle();
     }

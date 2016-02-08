@@ -9,10 +9,10 @@
 using namespace std;
 using namespace command;
 
-void function(int) { }
+void _function(int) { }
 
 int main() {
-    Option<int> option(NAME, "Option should throw exception on missing value", function);
+    Option<int> option(NAME, "Option should throw exception on missing value", _function);
 
     try {
         if (option.understand(BAD_OPTION)) {

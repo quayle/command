@@ -15,12 +15,12 @@ typedef std::string OptionType;
 
 OptionType test;
 
-void function(OptionType value) {
+void _function(OptionType value) {
     test = value;
 }
 
 int main() {
-    Option<OptionType> option(NAME, "Option with string value", function);
+    Option<OptionType> option(NAME, "Option with string value", _function);
 
     if (option.understand(OPTION)) {
         option.handle();

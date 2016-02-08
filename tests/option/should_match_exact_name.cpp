@@ -8,7 +8,7 @@
 using namespace std;
 using namespace command;
 
-void function(void) { }
+void _function(void) { }
 
 int main() {
     std::vector<std::string> badOptions;
@@ -18,7 +18,7 @@ int main() {
     badOptions.push_back("te");
     badOptions.push_back("t");
 
-    Option<void> option(NAME, "Option should match only exact name", function);
+    Option<void> option(NAME, "Option should match only exact name", _function);
     for (std::string bad : badOptions) {
         if (option.understand(bad)) {
             std::cout << option.describe() << " but '" << NAME << "' was matched as same to '" << bad << "'\n";

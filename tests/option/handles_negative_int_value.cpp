@@ -15,12 +15,12 @@ typedef int OptionType;
 
 OptionType test;
 
-void function(OptionType value) {
+void _function(OptionType value) {
     test = value;
 }
 
 int main() {
-    Option<OptionType> option(NAME, "Option as negative int", function);
+    Option<OptionType> option(NAME, "Option as negative int", _function);
 
     if (option.understand(OPTION)) {
         option.handle();

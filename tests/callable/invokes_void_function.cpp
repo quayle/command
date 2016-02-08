@@ -9,12 +9,12 @@ using namespace command;
 
 bool test = false;
 
-void function(void) {
+void _function(void) {
     test = true;
 };
 
 int main() {
-    TestCallable<void> callable(function);
+    TestCallable<void> callable(_function);
     callable.callFunction();
 
     if (test == true) {

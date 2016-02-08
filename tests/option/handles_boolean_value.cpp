@@ -16,12 +16,12 @@ typedef bool OptionType;
 
 OptionType test;
 
-void function(OptionType value) {
+void _function(OptionType value) {
     test = value;
 }
 
 int main() {
-    Option<OptionType> option(NAME, "Option with boolean value", function);
+    Option<OptionType> option(NAME, "Option with boolean value", _function);
 
     if (option.understand(OPTION1)) {
         option.handle();
@@ -35,7 +35,7 @@ int main() {
         cout << option.describe() << " handles " << FALSE << " values\n";
     }
 
-    Option<OptionType> option2(NAME, "Option with boolean value", function);
+    Option<OptionType> option2(NAME, "Option with boolean value", _function);
 
     if (option2.understand(OPTION2)) {
         option2.handle();

@@ -11,12 +11,12 @@ typedef float ArgumentType;
 
 ArgumentType test;
 
-void function(ArgumentType value) {
+void _function(ArgumentType value) {
     test = value;
 }
 
 int main() {
-    Argument<ArgumentType> argument("Argument as negative float", function);
+    Argument<ArgumentType> argument("Argument as negative float", _function);
 
     if (argument.understand(VALUE)) {
         argument.handle();

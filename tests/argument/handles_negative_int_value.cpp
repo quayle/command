@@ -11,12 +11,12 @@ typedef int ArgumentType;
 
 ArgumentType test;
 
-void function(ArgumentType value) {
+void _function(ArgumentType value) {
     test = value;
 }
 
 int main() {
-    Argument<ArgumentType> argument("Argument as negative int", function);
+    Argument<ArgumentType> argument("Argument as negative int", _function);
 
     if (argument.understand(VALUE)) {
         argument.handle();

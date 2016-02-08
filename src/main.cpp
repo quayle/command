@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <functional>
 
 #include "option.h"
 #include "argument.h"
@@ -22,15 +23,43 @@ void void_function(void) {
     std::cout << "Void function " << std::endl;
 }
 
+class ExampleClass {
+public:
+    void _argument(bool a) {
+        argument_function(a);
+    }
+    void _option(std::string a) {
+        option_function(a);
+    }
+    void _void(void) {
+        void_function();
+    }
+};
+
 int main(int argc, char *argv[]) {
+    Class c;
+
     try {
         Command command(argc, argv, {
             new Grouped({
-                new Required(new MultiValue("-", new Argument<bool>("Input values", argument_function))),
-                new MultiValue(",", new Option<std::string>("f", "Optional file", option_function))
+                new Required(
+                    new MultiValue("-",
+                        new Argument<bool>("Input values", std::bind(&ExampleClass::_argument, &c, std::placeholders::_1))
+                    )
+                ),
+                new MultiValue(",",
+                    new Option<std::string>("f", "Optional file", std::bind(&ExampleClass::_option, &c, std::placeholders::_1))
+                )
             }),
-            new Option<void>("h", "Help", void_function)
+            new Option<void>("h", "Help", std::bind(&ExampleClass::_void, &c)),
+
+            // just a pure method calling
+            new Option<void>("v", "version", void_function)
         });
+
+        /* ExampleClass is initialized.
+         * You can run your main program now
+         */
     }
     catch(const std::exception & e) {
         std::cout << e.what() << std::endl;

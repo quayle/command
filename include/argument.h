@@ -32,10 +32,6 @@ namespace command {
          * @param description Description of current Argument
          * @param function Function used to handle current Argument.
          */
-        Argument(const std::string & description, void (*function)(ParameterType))
-            : Parameter(description), Callable<ParameterType>(function) {
-        }
-
         Argument(const std::string & description, std::function<void(ParameterType)> function)
             : Parameter(description), Callable<ParameterType>(function) {
         }

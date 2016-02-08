@@ -44,7 +44,7 @@ namespace command {
          * @param description Description of current Option
          * @param function Function used to handle current Option.
          */
-        Option(const std::string & name, const std::string & description, void (*function)(ParameterType))
+        Option(const std::string & name, const std::string & description, std::function<void(ParameterType)> function)
             : Parameter(description), Callable<ParameterType>(function), name(name) {
         }
 
@@ -158,7 +158,7 @@ namespace command {
          * @param description Description of current Option
          * @param function Function used to handle current Option.
          */
-        Option(const std::string & name, const std::string & description, void (*function)(void))
+        Option(const std::string & name, const std::string & description, std::function<void(void)> function)
             : Parameter(description), Callable<void>(function), name(name) {
         }
 

@@ -21,7 +21,7 @@ CLEANFILES = \
     %~ \
     doxyfile.stamp
 
-SUBDIRS = include . tests docs
+SUBDIRS = include . tests examples docs
 
 noinst_PROGRAMS = bin/command
 

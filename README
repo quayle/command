@@ -6,8 +6,8 @@ C++ library for handling command line arguments.
 
 ### debian package
 
-    $ wget https://github.com/quayle/command/releases/download/v0.2.1-deb/command_0.2.1_all.deb
-    $ sudo dpkg -i command_0.2.1_all.deb
+    $ wget https://github.com/quayle/command/releases/download/v0.3-deb/command_0.3_all.deb
+    $ sudo dpkg -i command_0.3_all.deb
 
 ### from sources
 

@@ -37,7 +37,7 @@ public:
 };
 
 int main(int argc, char *argv[]) {
-    Class c;
+    ExampleClass c;
 
     try {
         Command command(argc, argv, {

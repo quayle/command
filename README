@@ -30,20 +30,41 @@ As this is header-only library, you don't need any additional steps.
 example.cpp:
 
     #include <iostream>
+    #include <string>
     #include <command/command.h>
     #include <command/option.h>
+    #include <command/argument.h>
 
     using namespace command;
 
+    class MyClass {
+        std::string _value = "Default";
+    public:
+        void setValue(std::string value) {
+            this->_value = value;
+        }
+        std::string getValue() {
+            return std::string("Value from MyClass: ") + this->_value;
+        }
+    };
+
     int main(int argc, char *argv[]) {
+        MyClass myClass;
         try {
             Command command(argc, argv, {
-                new Option<void>("-h", "Help", [](void) { std::cout << "Help information\n"; })
+                new Option<void>("-h", "Help", [](void) {
+                    std::cout << "Help information\n";
+                }),
+                new Argument<std::string>("Value for MyClass",
+                    std::bind(&MyClass::setValue, &myClass, std::placeholders::_1)
+                )
             });
         }
         catch(const std::exception & e) {
             return 1;
         }
+
+        std::cout << myClass.getValue() << std::endl;
 
         return 0;
     }
@@ -53,6 +74,14 @@ Now program can be compiled & run using following commands:
     $ g++ -std=c++11 example.cpp
     $ ./a.out -h
     Help information
+    Value from MyClass: Default
+
+    $ ./a.out someArg
+    Value from MyClass: someArg
+
+    $ ./a.out someArg -h
+    Help information
+    Value from MyClass: someArg
 
 ### Possible classes to use:
 

@@ -2,6 +2,8 @@
 
 C++ library for handling command line arguments.
 
+[![Build Status](https://travis-ci.org/quayle/command.svg?branch=master)](https://travis-ci.org/quayle/command)
+
 ## Installation
 
 ### debian package

@@ -19,3 +19,5 @@ addons:
     build_command_prepend: "./autogen.sh ; ./configure; make clean"
     build_command:   "make -j 4"
     branch_pattern: coverity_scan
+  code_climate:
+        repo_token: 7c7ce5ba21e7889b416fa1e0be9ce9f293021c706ec99a099d965e26a2a23386
